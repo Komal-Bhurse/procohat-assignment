@@ -45,12 +45,12 @@ export const addUser = async (req, res) => {
 
 export const updateUserStatusToApproved = async (req, res) => {
   try {
-    const {_id} = req.user;
+    const { _id } = req.user;
     const status = "Approved";
     const id = req.params.id;
 
     const user = await User.findOneAndUpdate(
-      { _id: id, admin_id:_id },
+      { _id: id, admin_id: _id },
       { status: status },
       { new: true }
     );
@@ -73,7 +73,7 @@ export const updateUserStatusToApproved = async (req, res) => {
 
 export const updateUserStatusToRejected = async (req, res) => {
   try {
-    const {_id} = req.user;
+    const { _id } = req.user;
     const { rejection_reason } = req.body;
 
     const status = "Rejected";
@@ -88,7 +88,7 @@ export const updateUserStatusToRejected = async (req, res) => {
     }
 
     const user = await User.findOneAndUpdate(
-      { _id: id , admin_id:_id},
+      { _id: id, admin_id: _id },
       { status: status, rejection_reason: rejection_reason },
       { new: true }
     );
@@ -111,10 +111,9 @@ export const updateUserStatusToRejected = async (req, res) => {
 
 export const getPendingUser = async (req, res) => {
   try {
+    const { _id } = req.user;
 
-    const {_id} = req.user;
-
-    const user = await User.find({ admin_id:_id, status: "Pending" });
+    const user = await User.find({ admin_id: _id, status: "Pending" });
 
     if (!user) {
       return res
@@ -132,10 +131,9 @@ export const getPendingUser = async (req, res) => {
 
 export const getApprovedUser = async (req, res) => {
   try {
+    const { _id } = req.user;
 
-    const {_id} = req.user;
-
-    const user = await User.find({ admin_id:_id, status: "Approved" });
+    const user = await User.find({ admin_id: _id, status: "Approved" });
 
     if (!user) {
       return res
@@ -153,9 +151,9 @@ export const getApprovedUser = async (req, res) => {
 
 export const getRejectedUser = async (req, res) => {
   try {
-    const {_id} = req.user;
+    const { _id } = req.user;
 
-    const user = await User.find({ admin_id:_id, status: "Rejected" });
+    const user = await User.find({ admin_id: _id, status: "Rejected" });
     if (!user) {
       return res
         .status(505)
@@ -171,8 +169,8 @@ export const getRejectedUser = async (req, res) => {
 
 export const getTotalUserCount = async (req, res) => {
   try {
-    const {_id} = req.user;
-    const count = await User.countDocuments({admin_id:_id});
+    const { _id } = req.user;
+    const count = await User.countDocuments({ admin_id: _id });
 
     return res
       .status(200)
@@ -184,8 +182,11 @@ export const getTotalUserCount = async (req, res) => {
 
 export const getPendingUserCount = async (req, res) => {
   try {
-    const {_id} = req.user;
-    const count = await User.countDocuments({ admin_id:_id, status: "Pending" })
+    const { _id } = req.user;
+    const count = await User.countDocuments({
+      admin_id: _id,
+      status: "Pending",
+    });
     return res
       .status(200)
       .json({ status: true, data: count, message: "success" });
@@ -218,8 +219,10 @@ export const userLogin = async (req, res) => {
     console.log("Generated Token:", token); // Debugging line
 
     res.cookie("user_token", token, {
-       httpOnly: true,
-      secure: false,
+      domain: "https://procohat-frontend-plum.vercel.app/",
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
     });
     return res.status(200).json({
       status: true,
@@ -249,16 +252,16 @@ export const adminLogin = async (req, res) => {
     }
     const token = generateToken(admin);
     res.cookie("admin_token", token, {
+      domain: "https://procohat-frontend-plum.vercel.app/",
       httpOnly: true,
-      secure: false,
+      secure: true,
+      sameSite: "strict",
     });
-    return res
-      .status(200)
-      .json({
-        status: true,
-        data: admin,
-        message: "Admin logged in successfully",
-      });
+    return res.status(200).json({
+      status: true,
+      data: admin,
+      message: "Admin logged in successfully",
+    });
   } catch (error) {
     return res.status(505).json({ status: false, data: "", message: error });
   }
