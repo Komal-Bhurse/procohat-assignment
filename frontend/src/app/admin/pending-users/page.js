@@ -18,7 +18,7 @@ export default function PendingUsers() {
   const handleApproveUser = async (id) => {
     try {
       const response = await axios.put(
-        `/api/user/status/approve/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/user/status/approve/${id}`,
         {},
         { withCredentials: true }
       );
@@ -45,7 +45,7 @@ export default function PendingUsers() {
     try {
       setLoading(true);
       const response = await axios.get(
-        "/api/user/all/pending",
+        process.env.NEXT_PUBLIC_API_URL + "/api/user/all/pending",
         { withCredentials: true }
       );
       const { status, data, message } = response?.data;

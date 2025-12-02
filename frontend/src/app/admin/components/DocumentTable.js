@@ -20,7 +20,7 @@ export default function DocumentTable({ documents, getAllDocuments }) {
     try {
       setLoading(true);
       const response = await axios.put(
-        `/api/document/status/approve/${documentId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/document/status/approve/${documentId}`,
         {},
         { withCredentials: true }
       );
@@ -44,7 +44,7 @@ export default function DocumentTable({ documents, getAllDocuments }) {
     try {
       setLoading(true);
       const response = await axios.put(
-        `/api/document/status/reject/${documentId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/document/status/reject/${documentId}`,
         {},
         { withCredentials: true }
       );

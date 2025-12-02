@@ -15,7 +15,7 @@ export default function Document() {
   const getAllDocuments = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("/api/document/all", {
+      const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + "/api/document/all", {
         withCredentials: true,
       });
       const { status, data, message } = response?.data;

@@ -33,7 +33,7 @@ export default function AddUser() {
       try {
         setLoading(true);
 
-          const response = await axios.post("/api/user/add", values, {
+          const response = await axios.post(process.env.NEXT_PUBLIC_API_URL + "/api/user/add", values, {
             withCredentials: true,
           });
           const { status, data, message } = response?.data;

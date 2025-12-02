@@ -13,7 +13,7 @@ export default function Header() {
   const handleLogout = async () => {
     setLoading(true);
     try {
-      const response = await axios.post("/api/user/admin-logout",{},{withCredentials:true});
+      const response = await axios.post(process.env.NEXT_PUBLIC_API_URL + "/api/user/admin-logout",{},{withCredentials:true});
       const {status,data, message} = response.data;
       if (status) {
         await logout();

@@ -44,7 +44,7 @@ export default function DocumentForm({ getAllDocuments }) {
           users: formattedUsers,
         };
 
-        const response = await axios.post(`/api/document/add/multiple`, payload, {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/document/add/multiple`, payload, {
           withCredentials: true,
         });
         const { status, data, message } = response?.data;
@@ -78,7 +78,7 @@ export default function DocumentForm({ getAllDocuments }) {
   const getApprovedAllUsers = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("/api/user/all/approved", {
+      const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + "/api/user/all/approved", {
         withCredentials: true,
       });
       const { status, data, message } = response?.data;

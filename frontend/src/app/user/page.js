@@ -19,7 +19,7 @@ export default function UserLogin() {
 
     try {
       const response = await axios.post(
-        "/api/user/user-login",
+        process.env.NEXT_PUBLIC_API_URL + "/api/user/user-login",
         { email, password },
         { withCredentials: true }
       );

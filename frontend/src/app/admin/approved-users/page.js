@@ -13,7 +13,7 @@ export default function ApprovedUsers() {
     try {
       setLoading(true);
       const response = await axios.get(
-        "/api/user/all/approved",
+        process.env.NEXT_PUBLIC_API_URL + "/api/user/all/approved",
         { withCredentials: true }
       );
       const { status, data, message } = response?.data;

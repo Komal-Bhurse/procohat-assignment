@@ -19,7 +19,7 @@ export default function AdminLogin() {
 
     try {
       const response = await axios.post(
-        "/api/user/admin-login",
+        process.env.NEXT_PUBLIC_API_URL + "/api/user/admin-login",
         { email, password },
         { withCredentials: true }
       );

@@ -27,7 +27,7 @@ export default function RejectModal({ id, getAllUsers ,setModel}) {
     onSubmit: async (values, { resetForm }) => {
       try {
         setLoading(true);
-          const response = await axios.put(`/api/user/status/reject/${id}`, values, {
+          const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/user/status/reject/${id}`, values, {
             withCredentials: true,
           });
           const { status, data, message } = response?.data;

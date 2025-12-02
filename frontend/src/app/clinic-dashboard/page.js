@@ -26,7 +26,7 @@ export default function ClinicDashboard() {
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(
-        "/api/clinic/delete/" + id,
+        process.env.NEXT_PUBLIC_API_URL + "/api/clinic/delete/" + id,
         {},
         { withCredentials: true }
       );
@@ -50,7 +50,7 @@ export default function ClinicDashboard() {
   const getAllClinics = async () => {
     try {
       const response = await axios.get(
-        "/api/clinic/all",
+        process.env.NEXT_PUBLIC_API_URL + "/api/clinic/all",
         {},
         { withCredentials: true }
       );

@@ -68,7 +68,7 @@ export default function AddUserModal({ clinic, getAllClinics, onClose }) {
         setLoading(true);
 
         if (!clinic) {
-          const response = await axios.post("/api/clinic/add", values, {
+          const response = await axios.post(process.env.NEXT_PUBLIC_API_URL + "/api/clinic/add", values, {
             withCredentials: true,
           });
           const { status, data, message } = response?.data;
@@ -91,7 +91,7 @@ export default function AddUserModal({ clinic, getAllClinics, onClose }) {
             return;
           }
           const response = await axios.put(
-            "/api/clinic/update/" + clinic._id,
+            process.env.NEXT_PUBLIC_API_URL + "/api/clinic/update/" + clinic._id,
             changes,
             {
               withCredentials: true,

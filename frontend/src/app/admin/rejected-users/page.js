@@ -13,7 +13,7 @@ export default function RejectedUsers() {
     try {
       setLoading(true);
       const response = await axios.get(
-        "/api/user/all/rejected",
+        process.env.NEXT_PUBLIC_API_URL + "/api/user/all/rejected",
         { withCredentials: true }
       );
       const { status, data, message } = response?.data;

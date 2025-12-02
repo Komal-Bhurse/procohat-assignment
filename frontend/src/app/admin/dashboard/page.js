@@ -10,7 +10,7 @@ export default function Dashboard() {
 
   const fetchTotalUsersCount = async () => {
     try {
-      const response = await axios.get("/api/user/count/all", {
+      const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + "/api/user/count/all", {
         withCredentials: true,
       });
       const { status, data, message } = response?.data; 
@@ -25,7 +25,7 @@ export default function Dashboard() {
 
   const fetchPendingUsersCount = async () => {
     try {
-      const response = await axios.get("/api/user/count/pending", {
+      const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + "/api/user/count/pending", {
         withCredentials: true,
       });
       const { status, data, message } = response?.data;

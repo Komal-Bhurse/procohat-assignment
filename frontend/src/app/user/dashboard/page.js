@@ -8,7 +8,7 @@ export default function Dashboard() {
 
   const fetchUserDocuments = async () => {
     try {
-      const response = await axios.get("/api/document/get-user-documents", {
+      const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + "/api/document/get-user-documents", {
         withCredentials: true,
       });
       const { status, data } = response?.data;
