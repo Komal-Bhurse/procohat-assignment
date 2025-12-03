@@ -221,10 +221,10 @@ export const userLogin = async (req, res) => {
     console.log("Generated Token:", token); // Debugging line
 
     res.cookie("user_token", token, {
-      domain: "https://procohat-frontend-plum.vercel.app/",
+      
       httpOnly: true,
       secure: true,
-      sameSite: "strict",
+
     });
     return res.status(200).json({
       status: true,
@@ -248,7 +248,7 @@ export const adminLogin = async (req, res) => {
     }
     // const isPasswordCorrect = await bcrypt.compare(password, admin.password);
     const isPasswordCorrect = password === admin.password;
-    
+
     if (!isPasswordCorrect) {
       return res
         .status(401)
@@ -256,10 +256,8 @@ export const adminLogin = async (req, res) => {
     }
     const token = generateToken(admin);
     res.cookie("admin_token", token, {
-      domain: "https://procohat-frontend-plum.vercel.app/",
       httpOnly: true,
       secure: true,
-      sameSite: "strict",
     });
     return res.status(200).json({
       status: true,
