@@ -39,6 +39,7 @@ export const addUser = async (req, res) => {
       .status(201)
       .json({ status: true, data: user, message: "user added" });
   } catch (message) {
+    console.log("error",message)
     return res.status(505).json({ status: false, data: "", message: message });
   }
 };
