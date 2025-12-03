@@ -4,44 +4,43 @@ import { generateToken, validateToken } from "../services/user.js";
 
 export const addUser = async (req, res) => {
   try {
-    // const { _id } = req.user;
-    console.log(req.user)
+    const { _id } = req.user;
 
-    // const { username, email, role, password } = req.body;
+    const { username, email, role, password } = req.body;
 
-    // if ((!username && !email && !role, !password)) {
-    //   return res.status(404).json({
-    //     status: false,
-    //     data: "",
-    //     message: "Please fill all the details",
-    //   });
-    // }
+    if ((!username && !email && !role, !password)) {
+      return res.status(404).json({
+        status: false,
+        data: "",
+        message: "Please fill all the details",
+      });
+    }
 
     // const hashedPassword = await bcrypt.hash(password, 10);
 
-    // const obj = {
-    //   admin_id: _id,
-    //   username,
-    //   email,
-    //   role,
-    //   password: password,
-    //   status: "Pending",
-    // };
+    const obj = {
+      admin_id: _id,
+      username,
+      email,
+      role,
+      password: password,
+      status: "Pending",
+    };
 
-    // const user = await User.create(obj);
+    const user = await User.create(obj);
 
-    // if (!user) {
-    //   return res
-    //     .status(505)
-    //     .json({ status: false, data: "", message: "server message" });
-    // }
+    if (!user) {
+      return res
+        .status(505)
+        .json({ status: false, data: "", message: "server message" });
+    }
 
     return res
       .status(201)
       .json({ status: true, data: req.user, message: "user added" });
   } catch (message) {
     console.log("error",message)
-    return res.status(505).json({ status: false, data: "", message: req.user });
+    return res.status(505).json({ status: false, data: "", message: message });
   }
 };
 
