@@ -33,7 +33,7 @@ const cors = (req,res,next) =>{
         next();
 }
 
-app.use(cors)
+cors()
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
