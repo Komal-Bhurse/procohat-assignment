@@ -259,7 +259,7 @@ export const adminLogin = async (req, res) => {
     res.cookie("admin_token", token, {
       httpOnly: true,
       secure: true,
-      sameSite:none,
+      sameSite:"None",
     });
     return res.status(200).json({
       status: true,
