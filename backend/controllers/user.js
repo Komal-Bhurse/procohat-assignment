@@ -4,7 +4,8 @@ import { generateToken, validateToken } from "../services/user.js";
 
 export const addUser = async (req, res) => {
   try {
-    const { _id } = req.user;
+    // const { _id } = req.user;
+    console.log(req.user)
 
     const { username, email, role, password } = req.body;
 
