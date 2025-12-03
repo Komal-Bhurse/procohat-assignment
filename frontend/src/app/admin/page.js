@@ -6,8 +6,8 @@ import axios from "axios";
 import Loader from "./components/Loader";
 
 export default function AdminLogin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("test@gmail.com");
+  const [password, setPassword] = useState("test123");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { isAuthenticated, isLoading, login } = useAuth();
