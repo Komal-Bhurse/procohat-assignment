@@ -225,7 +225,7 @@ export const userLogin = async (req, res) => {
       
       httpOnly: true,
       secure: true,
-
+sameSite:"None",
     });
     return res.status(200).json({
       status: true,
