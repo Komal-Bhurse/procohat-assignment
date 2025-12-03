@@ -12,12 +12,7 @@ export default function Home() {
             >
               Clinic Dashboard
             </Link>
-            <Link
-              href="/image-gallery"
-              className="flex h-12 w-full items-center justify-center rounded-full bg-green-600 px-6 text-white transition-colors hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 sm:w-auto"
-            >
-              Image Gallery
-            </Link>
+           
             <Link
               href="/admin"
               className="flex h-12 w-full items-center justify-center rounded-full bg-blue-600 px-6 text-white transition-colors hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 sm:w-auto"
