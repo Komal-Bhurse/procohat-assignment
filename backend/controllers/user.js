@@ -1,5 +1,5 @@
 import User from "../models/user.js";
-import bcrypt from "bcryptjs";
+// import bcrypt from "bcryptjs";
 import { generateToken, validateToken } from "../services/user.js";
 
 export const addUser = async (req, res) => {
@@ -16,14 +16,14 @@ export const addUser = async (req, res) => {
       });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // const hashedPassword = await bcrypt.hash(password, 10);
 
     const obj = {
       admin_id: _id,
       username,
       email,
       role,
-      password: hashedPassword,
+      password: password,
       status: "Pending",
     };
 
@@ -207,7 +207,9 @@ export const userLogin = async (req, res) => {
 
     console.log("User found:", user, password); // Debugging line
 
-    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    const isPasswordCorrect = password === user.password;
+
+    console.log("Is password correct:", isPasswordCorrect); // Debugging line
 
     if (!isPasswordCorrect) {
       return res
@@ -244,7 +246,9 @@ export const adminLogin = async (req, res) => {
         .status(401)
         .json({ status: false, data: "", message: "Admin not found" });
     }
-    const isPasswordCorrect = await bcrypt.compare(password, admin.password);
+    // const isPasswordCorrect = await bcrypt.compare(password, admin.password);
+    const isPasswordCorrect = password === admin.password;
+    
     if (!isPasswordCorrect) {
       return res
         .status(401)
